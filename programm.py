@@ -8,6 +8,17 @@ def many_elements(massive):
 
     return ans
 
+def uniqal_elements_first(massive_a, massive_b):
+    massive_a, massive_b = many_elements(massive_a),  many_elements(massive_b)
+    ans_a, ans_b = [], []
+    for elements in massive_a:
+        if elements not in massive_b:
+            ans_a.append(elements)
+    for elements in massive_b:
+        if elements not in massive_a:
+            ans_b.append(elements)
+    return [ans_a, ans_b]
+
 
 def element_a_in_b(massive_a, massive_b):
     ans = many_elements(massive_a)
@@ -19,7 +30,7 @@ def element_a_in_b(massive_a, massive_b):
 
     return ans_b
 
-def uniqal_elements(massive_a, massive_b):
+def uniqal_elements_second(massive_a, massive_b):
     massive_a, massive_b = set(massive_a), set(massive_b)
     ans_a, ans_b = [], []
     for elements in massive_a:
@@ -46,27 +57,37 @@ def main():
             "2. Ввести массив B\n"
             "3. Задание секции 1.2\n"
             "4. Задание секции 2.2\n"
-            "5. Задание секции 2.3\n"
+            "5. Задание секции 3.2\n"
             "6. Выход из меню\n"
             "Напишите цифру действия: "
         )
         match menu_variable:
             case "1":
                 try:
-                    masive_first = list(map(int, input("Введите целые числовые элементы массива A").split()))
-                    print(masive_first)
+                    masive_first = list(map(int, input("Введите целые числовые элементы массива A: ").split()))
                     check_int_array(masive_first)
                 except ValueError:
                     print("Элементы должны быть целыми числами!!")
             case "2":
                 try:
-                    masive_second = list(map(int, input("Введите целые числовые элементы массива B").split()))
+                    masive_second = list(map(int, input("Введите целые числовые элементы массива B: ").split()))
                     check_int_array(masive_second)
                 except ValueError:
                     print("Элементы должны быть целыми числами!!")
+            case "3":
+                print(
+                    "Элементы которые присутствуют в нескольких экземплярах:\n"
+                    f"В массиве А:{(uniqal_elements_first(masive_first, masive_second))[0]}\n"
+                    f"В массиве B:{(uniqal_elements_first(masive_first, masive_second))[1]}"
+                )
             case "4":
-                print("повторяющиеся элементы массива А,"\
+                print("повторяющиеся элементы массива А, "\
                     f"которые есть в массиве B: {element_a_in_b(masive_first, masive_second)}")
+            case "5":
+                print(f"Элементы,которые есть только в массиве А: " \
+                      f"{(uniqal_elements_second(masive_first, masive_second))[0]}\n"
+                      f"Элементы,которые есть только в массиве B: " \
+                      f"{(uniqal_elements_second(masive_first, masive_second))[1]}")
             case "6":
                 break
 
