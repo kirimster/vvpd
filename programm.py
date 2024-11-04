@@ -9,7 +9,6 @@ def many_elements(massive):
     return ans
 
 
-
 def element_a_in_b(massive_a, massive_b):
     ans = many_elements(massive_a)
     ans_b = []
@@ -19,6 +18,17 @@ def element_a_in_b(massive_a, massive_b):
             ans_b.append(element)
 
     return ans_b
+
+def uniqal_elements(massive_a, massive_b):
+    massive_a, massive_b = set(massive_a), set(massive_b)
+    ans_a, ans_b = [], []
+    for elements in massive_a:
+        if elements not in massive_b:
+            ans_a.append(elements)
+    for elements in massive_b:
+        if elements not in massive_a:
+            ans_b.append(elements)
+    return [ans_a, ans_b]
 
 
 
@@ -36,7 +46,7 @@ def main():
             "2. Ввести массив B\n"
             "3. Задание секции 1.2\n"
             "4. Задание секции 2.2\n"
-            "5. Задание секции 2.2\n"
+            "5. Задание секции 2.3\n"
             "6. Выход из меню\n"
             "Напишите цифру действия: "
         )
